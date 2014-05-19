@@ -1,0 +1,68 @@
+doctype html
+|<!--[if IEMobile 7 ]><html class="no-js ie iem7"><![endif]-->
+|<!--[if lt IE 7]>      <html class="ie6 ie lte-ie8 lte-ie7"> <![endif]-->
+|<!--[if IE 7]>         <html class="ie7 ie lte-ie8 lte-ie7"> <![endif]-->
+|<!--[if IE 8]>         <html class="ie8 ie lte-ie8"> <![endif]-->
+|<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+head
+  script src='//cdn.optimizely.com/js/30915145.js'
+  meta charset="utf-8"
+  title =@title
+  meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+  meta name="HandheldFriendly" content="True"
+  meta name="MobileOptimized" content="320"
+  meta name="viewport" content="width=device-width, initial-scale=1"
+  meta name="description" content="MongoHQ is a premiere MongoDB hosting and management platform.  We offer MongoDB shared hosting, custom deployments, and sharded clusters."
+  link rel="stylesheet" href="/stylesheets/screen.css" media="screen, projection" type="text/css"
+body
+  header role="banner"
+    .container
+      a.logo href="http://mongohq.com"
+      a.button href="https://www.mongohq.com/login" Sign In
+
+      h1= ab_test("tour_headline", "MongoDB Hosting with the Experts", "MongoDB as a Service")
+      h2 Proven cloud-based MongoDB Hosting
+      a.button.signup.signup_color_test href="/signup" Get Started
+
+  == yield
+
+  -if ENV['RACK_ENV'] == 'production'
+    javascript:
+      var _gaq = _gaq || [];
+
+      var pluginUrl = 
+       '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+       _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+
+      _gaq.push(['_setAccount', 'UA-104796-14']);
+      _gaq.push(['_setDomainName', 'mongohq.com']);
+
+      _gaq.push(["_trackEvent","Tour","Visit"]);
+
+
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    javascript:
+      (function() {
+        window._pa = window._pa || {};
+        // _pa.orderId = "myUser@email.com"; // OPTIONAL: include your user's email address or order ID
+        // _pa.revenue = "19.99"; // OPTIONAL: include dynamic purchase value for the conversion
+        // _pa.onLoadEvent = "sign_up"; // OPTIONAL: name of segment/conversion to be fired on script load
+        var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+        pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/serve/51099b3ec775280002000606.js";
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+      })();
+
+    javascript:
+      (function(d,s,i,r) {
+        if (d.getElementById(i)){return;}
+        var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+        n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/337830.js';
+        e.parentNode.insertBefore(n, e);
+      })(document,"script","hs-analytics",300000);
